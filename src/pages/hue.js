@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Menu from "../components/Menu";
 import ColorBlock from "../components/ColorBlock";
 import HSL from "../assets/colors/hsl";
+import '../../node_modules/font-awesome/css/font-awesome.min.css'; 
 import {
   Container,
   Col,
@@ -54,7 +55,7 @@ class Hue extends React.Component {
     }
   };
   render() {
-    var basicColors = HSL.hexToHsl(this.state.selectedColor,5).map(item => (
+    var basicColors = HSL.hexToHsl(this.state.selectedColor, 5).map(item => (
       <Col sm={2} id="container">
         {this.state.hex ? (
           <ColorBlock color={item.name} type={item.hex} />
@@ -70,7 +71,7 @@ class Hue extends React.Component {
 
     const popover = (
       <Popover id="popover-basic">
-        <Popover.Title as="h3">Popover bottom</Popover.Title>
+        <Popover.Title as="h3">Color Picker</Popover.Title>
         <Popover.Content>
           <SketchPicker
             color={this.state.selectedColor}
@@ -86,7 +87,7 @@ class Hue extends React.Component {
         <Menu></Menu>
         <Container fluid="true">
           <Row id="sub-menu">
-            <Col sm={4}>
+            <Col sm={2}>
               <Form>
                 {["radio"].map(type => (
                   <div key={`inline-${type}`} className="mb-3">
@@ -121,15 +122,47 @@ class Hue extends React.Component {
                 ))}
               </Form>
             </Col>
-            <Col sm={4}>Selected Color : {this.state.selectedColor}</Col>
-            <Col sm={4}>
-              <OverlayTrigger
+            <Col sm={2}>
+              {this.state.selectedColor === "#ffffff" ? (
+                <p
+                  style={{
+                    background: this.state.selectedColor,
+                    color: "#000000",
+                    border:"1px solid black",
+                    padding: "5px"
+                  }}
+                >
+                  {this.state.selectedColor}&nbsp;&nbsp;
+                  <OverlayTrigger
                 trigger="click"
                 placement="bottom"
                 overlay={popover}
               >
-                <Button variant="dark">Color Selector</Button>
+                <Button variant="dark" id="btn-right"><i className="fa fa-pencil"></i></Button>
               </OverlayTrigger>
+                </p>
+              ) : (
+                <p
+                  style={{
+                    background: this.state.selectedColor,
+                    color: "#ffffff",
+                    padding: "5px"
+                  }}
+                >
+                  {this.state.selectedColor}&nbsp;&nbsp;
+                  <OverlayTrigger
+                trigger="click"
+                placement="bottom"
+                overlay={popover}
+              >
+                <Button variant="dark" id="btn-right"><i className="fa fa-pencil"/></Button>
+              </OverlayTrigger>
+                </p>
+              )}
+              
+            </Col>
+            <Col sm={4}>
+              
             </Col>
           </Row>
           <Row>{basicColors}</Row>

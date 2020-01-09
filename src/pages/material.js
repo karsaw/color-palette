@@ -71,6 +71,7 @@ class Material extends React.Component {
                       checked={this.state.hex}
                       onClick={this.handleChange}
                       value="hex"
+                      readOnly
                     />
                     <Form.Check
                       inline
@@ -80,6 +81,7 @@ class Material extends React.Component {
                       checked={this.state.rgb}
                       onClick={this.handleChange}
                       value="rgb"
+                      readOnly
                     />
                     <Form.Check
                       inline
@@ -89,6 +91,7 @@ class Material extends React.Component {
                       checked={this.state.rgba}
                       onClick={this.handleChange}
                       value="rgba"
+                      readOnly
                     />
                   </div>
                 ))}
